@@ -143,6 +143,18 @@ class DirectGatewayTest extends GatewayTestCase
         $this->assertSame('The transaction was RELEASEed successfully.', $response->getMessage());
     }
 
+    public function testRepeatSuccess()
+    {
+        // TODO
+        $this->setMockHttpResponse('CaptureSuccess.txt');
+
+        $response = $this->gateway->refund($this->captureOptions)->send();
+
+        $this->assertTrue($response->isSuccessful());
+        $this->assertSame('{"VendorTxCode":"123"}', $response->getTransactionReference());
+        $this->assertSame('The transaction was RELEASEed successfully.', $response->getMessage());
+    }
+
     public function testRefundFailure()
     {
         $this->setMockHttpResponse('CaptureFailure.txt');

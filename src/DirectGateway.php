@@ -86,4 +86,9 @@ class DirectGateway extends AbstractGateway
     {
         return $this->createRequest('\Omnipay\SagePay\Message\RefundRequest', $parameters);
     }
+
+    public function repeat(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\SagePay\Message\DirectRepeatRequest', $parameters);
+    }
 }
